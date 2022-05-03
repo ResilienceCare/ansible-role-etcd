@@ -1,7 +1,8 @@
 #jinja2: trim_blocks:False
 {%- macro cluster_hosts() -%}
+{% set separator = joiner(',') %}
 {%- for host in groups[etcd_ansible_group] -%}
-{{hostvars[host]['inventory_hostname']}}=https://{{hostvars[host].ansible_all_ipv4_addresses | ansible.netcommon.ipaddr('private') | first}}:{{etcd_peer_port}}{% if not loop.last %},{% endif %}
+{{ separator() }}{{hostvars[host]['inventory_hostname']}}=https://{{hostvars[host].ansible_all_ipv4_addresses | ansible.netcommon.ipaddr('private') | first}}:{{etcd_peer_port}}
 {%- endfor -%} 
 {%- endmacro -%}
 
