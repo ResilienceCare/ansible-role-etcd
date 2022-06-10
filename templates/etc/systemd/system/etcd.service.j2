@@ -20,6 +20,7 @@ ExecStart={{etcd_bin_dir}}/etcd \
 {%- for setting in etcd_settings|sort %}
   --{{setting}}="{{etcd_settings[setting]}}" {% if not loop.last %}\{% endif %}
 {%- endfor %}
+TimeoutStartSec={{ etcd_systemd_timeout_start_sec }}
 Restart=on-failure
 RestartSec=5
 Type=notify
