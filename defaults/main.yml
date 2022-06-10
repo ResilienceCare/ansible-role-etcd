@@ -30,6 +30,9 @@ etcd_architecture: "amd64"
 # Only change this if the architecture you are using is unsupported (for example: arm64)
 # For more information, see this: https://github.com/etcd-io/website/blob/master/content/docs/v3.4/op-guide/supported-platform.md
 etcd_allow_unsupported_archs: false
+# Default value for systemd's TimeoutStartSec option
+# Useful whith large etcd database files that take too long to load avoiding infinite restarts
+etcd_systemd_timeout_start_sec: "90s"
 
 etcd_settings:
   "name": "{{ansible_hostname}}"
