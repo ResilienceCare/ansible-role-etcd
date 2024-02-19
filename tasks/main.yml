@@ -40,6 +40,8 @@
     group: root
   with_items:
     - "{{ etcd_certificates }}"
+  notify:
+    - restart etcd
   no_log: true
   tags:
     - etcd
